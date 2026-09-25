@@ -1,0 +1,141 @@
+.partners {
+  --logo-blue: #2a6aae;
+  --logo-yellow: #e8b828;
+
+  background: #ffffff;
+  padding: 90px 0;
+}
+
+.partners__inner {
+  display: grid;
+  grid-template-columns: minmax(240px, 0.8fr) 2.2fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.partners__title {
+  font-size: clamp(2rem, 3.6vw, 2.9rem);
+  font-weight: 700;
+  line-height: 1.12;
+  color: #111111;
+}
+
+.partners__highlight {
+  background: linear-gradient(90deg, var(--logo-blue), var(--logo-yellow));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.partners__logos {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* Moving row */
+.partners__viewport {
+  overflow: hidden;
+  /* soft fade at both edges */
+  mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+}
+
+/* Continuous slow scroll: the track holds two copies, so moving it left by
+   half its width lands exactly where it started */
+.partners__track {
+  display: flex;
+  width: max-content;
+  animation: partnersScroll 40s linear infinite;
+}
+
+.partners__viewport:hover .partners__track {
+  animation-play-state: paused;
+}
+
+@keyframes partnersScroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.partners__slide {
+  flex-shrink: 0;
+  width: 190px;
+  height: 90px;
+  padding: 0 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.partners__logo {
+  display: block;
+  max-width: 100%;
+  max-height: 56px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  transition: filter 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Moving logos: black & white by default, full colour on hover */
+.partners__slide .partners__logo {
+  filter: grayscale(1);
+  opacity: 0.75;
+}
+
+.partners__slide:hover .partners__logo {
+  filter: grayscale(0);
+  opacity: 1;
+  transform: scale(1.08);
+}
+
+.partners__cert:hover .partners__logo {
+  transform: scale(1.08);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .partners__track {
+    animation: none;
+  }
+}
+
+/* Static certifications row */
+.partners__certs {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 16px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(17, 17, 17, 0.08);
+}
+
+.partners__cert {
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.partners__cert .partners__logo {
+  max-height: 72px;
+}
+
+@media (max-width: 1024px) {
+  .partners__inner {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .partners__title {
+    text-align: center;
+  }
+}
+
+@media (max-width: 720px) {
+  .partners {
+    padding: 72px 0;
+  }
+  .partners__certs {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --navy: #0a2c6e;
+  --navy-dark: #071d4a;
+  --gold: #c9962b;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Keep jumped-to sections clear of the fixed navbar */
+[id] {
+  scroll-margin-top: 90px;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  color: #1f2937;
+  background: #ffffff;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: 'Poppins', sans-serif;
+}
+
+/* shared small utility used by several sections */
+.section-eyebrow {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.75rem;
+}
+
+.container-xl {
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
