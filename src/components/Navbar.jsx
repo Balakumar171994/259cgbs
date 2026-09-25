@@ -1,8 +1,10 @@
 import { useState, useRef, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { nav } from '../data'
+import { nav, socials } from '../data'
 import logo from '../assets/canopus-logo-landscape.png'
 import './Navbar.css'
+
+const linkedin = socials.find((s) => s.key === 'linkedin')
 
 export default function Navbar() {
   const [openMenu, setOpenMenu] = useState(null)
@@ -76,6 +78,17 @@ export default function Navbar() {
             </div>
           ))}
         </nav>
+
+        <a
+          href={linkedin.href}
+          className="navbar__linkedin"
+          aria-label="Canopus GBS on LinkedIn"
+          {...(linkedin.href !== '#' && { target: '_blank', rel: 'noopener noreferrer' })}
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d={linkedin.path} />
+          </svg>
+        </a>
 
         {/* Mobile toggle */}
         <button

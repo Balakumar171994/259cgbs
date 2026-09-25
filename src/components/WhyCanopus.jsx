@@ -71,6 +71,7 @@ export default function WhyCanopus() {
   const [active, setActive] = useState(0)
   const [previous, setPrevious] = useState(null)
   const [paused, setPaused] = useState(false)
+  const [openPoint, setOpenPoint] = useState(0)
 
   const goTo = (i) => {
     if (i === active) return
@@ -99,28 +100,55 @@ export default function WhyCanopus() {
             </p>
           ))}
 
+          {/* Accordion: click a heading to show its text; one open at a time */}
           <ul className="why__points">
-            {whyCanopus.points.map((pt, i) => (
-              <li className="why__point" key={pt.title}>
-                <span className={`why__icon ${i % 2 ? 'why__icon--alt' : ''}`}>
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.8"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    aria-hidden="true"
+            {whyCanopus.points.map((pt, i) => {
+              const isOpen = openPoint === i
+              return (
+                <li className={`why__point ${isOpen ? 'is-open' : ''}`} key={pt.title}>
+                  <h3 className="why__point-heading">
+                    <button
+                      type="button"
+                      id={`why-point-head-${i}`}
+                      className="why__point-head"
+                      aria-expanded={isOpen}
+                      aria-controls={`why-point-${i}`}
+                      onClick={() => setOpenPoint(isOpen ? null : i)}
+                    >
+                      <span className={`why__icon ${i % 2 ? 'why__icon--alt' : ''}`}>
+                        <svg
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="1.8"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          aria-hidden="true"
+                        >
+                          {icons[pt.icon]}
+                        </svg>
+                      </span>
+                      <span className="why__point-title">{pt.title}</span>
+                      <span className="why__arrow" aria-hidden="true">
+                        <svg viewBox="0 0 24 24">
+                          <path d="M6 9l6 6 6-6" />
+                        </svg>
+                      </span>
+                    </button>
+                  </h3>
+                  <div
+                    className="why__point-body"
+                    id={`why-point-${i}`}
+                    role="region"
+                    aria-labelledby={`why-point-head-${i}`}
                   >
-                    {icons[pt.icon]}
-                  </svg>
-                </span>
-                <div>
-                  <h3 className="why__point-title">{pt.title}</h3>
-                  <p className="why__point-text">{pt.text}</p>
-                </div>
-              </li>
-            ))}
+                    <div className="why__point-inner">
+                      <p className="why__point-text">{pt.text}</p>
+                    </div>
+                  </div>
+                </li>
+              )
+            })}
           </ul>
         </div>
 

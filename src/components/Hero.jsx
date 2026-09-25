@@ -19,8 +19,10 @@ export default function Hero() {
             </span>
           ))}
         </h1>
-        <p className="hero__subtitle">{hero.subtitle}</p>
-        <p className="hero__subtitle hero__description">{hero.description}</p>
+        <div className="hero__intro-box">
+          <p className="hero__subtitle">{hero.subtitle}</p>
+          <p className="hero__subtitle hero__description">{hero.description}</p>
+        </div>
 
         <div className="hero__cta-row">
           <Link to={hero.primaryCta.href} className="hero__btn hero__btn--primary">

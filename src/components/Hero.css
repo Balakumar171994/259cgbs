@@ -64,17 +64,30 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* Very light see-through panel behind the two intro paragraphs */
+.hero__intro-box {
+  max-width: 860px;
+  margin: 0 auto 40px;
+  padding: 22px 32px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(42, 106, 174, 0.12);
+  box-shadow: 0 10px 30px rgba(42, 106, 174, 0.06);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
 .hero__subtitle {
   color: #111111;
   font-size: 1.05rem;
   line-height: 1.7;
-  max-width: 680px;
-  margin: 0 auto 16px;
+  max-width: 790px;
+  margin: 0 auto 12px;
 }
 
 .hero__description {
   font-size: 0.98rem;
-  margin-bottom: 40px;
+  margin-bottom: 0;
 }
 
 .hero__cta-row {
@@ -178,5 +191,8 @@
   }
   .hero {
     padding-top: 110px;
+  }
+  .hero__intro-box {
+    padding: 18px 16px;
   }
 }
